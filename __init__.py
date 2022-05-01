@@ -13,7 +13,7 @@ telegram_api_id = '15075009'
 telegram_api_hash = '1b3f35183a1865d05a169f8f60106151'
 
 # TODO get phone number from sms_api
-phone_number = '12162604185'
+phone_number = '14138894178'
 
 client = TelegramClient('tester',
                         telegram_api_id,
@@ -21,7 +21,7 @@ client = TelegramClient('tester',
 
 async def create_new_client():
     await client.connect()
-    send_sms_verification_code()
+    await send_sms_verification_code()
 
     # TODO get verification code from phone number
     # code collected from the sms message
@@ -38,8 +38,8 @@ async def send_sms_verification_code():
         # sometimes phone numbers are blocked as well
 
 async def sign_up_client_to_telegram(verification_code):
-    await client.sign_in(phone_number, verification_code)
-    #await client.sign_up(code=verifaction_code, first_name="test", last_name="er", phone=phone_number)
+    # await client.sign_in(phone_number, verification_code)
+    await client.sign_up(code=verification_code, first_name="test", last_name="er")
 
 async def main():
     await asyncio.gather(create_new_client())

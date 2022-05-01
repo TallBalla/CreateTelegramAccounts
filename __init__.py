@@ -1,6 +1,7 @@
 import asyncio
 import names
 import time
+import requests
 from tkinter import E
 from requests import get
 from smsactivate.api import SMSActivateAPI
@@ -11,13 +12,11 @@ from telethon.tl.functions.channels import JoinChannelRequest
 
 
 # Info@payitnow.io acount api key
-# sms_api_key = '1bde5d8A7931c38880dc7ecf97332cA6'
-
-# Test account api key
 sms_api_key = '769b7fA2cA8b5191d3c382cf46784db1'
 
+
 sms_api = SMSActivateAPI(sms_api_key)
-sms_api.debug_mode = False
+sms_api.debug_mode = True
 
 telegram_api_id = '15075009'
 telegram_api_hash = '1b3f35183a1865d05a169f8f60106151'
@@ -32,7 +31,6 @@ async def main():
 
 async def create_new_client():
     phone_meta_data = get_sms_api_response()
-    print(phone_meta_data.get('id'))
     await client.connect()
     await send_sms_verification_code(phone_meta_data)
     message_meta_data = get_message_meta_data(phone_meta_data)
@@ -42,7 +40,8 @@ async def create_new_client():
     await add_client_to_pin_group()
 
 def get_sms_api_response():
-    sms_api_response = sms_api.getRentNumber(service='tg')
+    sms_api_response = sms_api.getNumber(service='tg')
+    # sms_api_response = sms_api.getRentNumber(service='tg')
     phone_meta_data = sms_api_response.get('phone')
     if phone_meta_data is None:
         get_sms_api_response()
@@ -59,8 +58,10 @@ async def send_sms_verification_code(phone_meta_data):
         await send_sms_verification_code(phone_meta_data)
 
 def get_message_meta_data(phone_meta_data):
-    phone_id = phone_meta_data.get('id')
-    message_meta_data = sms_api.getRentStatus('5542843')
+    phone_id = phone_meta_data.get('activation_id')
+    # phone_id = phone_meta_data.get('id')
+    message_meta_data = sms_api.getStatus(phone_id)
+    # message_meta_data = sms_api.getRentStatus(phone_id)
 
     if message_meta_data.get('status') == 'error':
         get_message_meta_data(phone_meta_data)
@@ -90,4 +91,3 @@ async def add_client_to_pin_group():
 if __name__ == '__main__':
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     asyncio.run(main())
-

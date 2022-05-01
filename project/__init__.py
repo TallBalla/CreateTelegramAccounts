@@ -4,7 +4,7 @@ import time
 import requests
 from tkinter import E
 from requests import get
-from smsactivate.api import SMSActivateAPI
+
 
 from telethon import TelegramClient
 from telethon import errors
@@ -13,10 +13,6 @@ from telethon.tl.functions.channels import JoinChannelRequest
 
 # Info@payitnow.io acount api key
 sms_api_key = 'mPeOymYGK30laHMO-BP_oPpu3vJTFqm7'
-
-
-sms_api = SMSActivateAPI(sms_api_key)
-sms_api.debug_mode = True
 
 telegram_api_id = '15075009'
 telegram_api_hash = '1b3f35183a1865d05a169f8f60106151'

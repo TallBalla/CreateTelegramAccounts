@@ -12,7 +12,7 @@ from telethon.tl.functions.channels import JoinChannelRequest
 
 
 # Info@payitnow.io acount api key
-sms_api_key = '769b7fA2cA8b5191d3c382cf46784db1'
+sms_api_key = 'mPeOymYGK30laHMO-BP_oPpu3vJTFqm7'
 
 
 sms_api = SMSActivateAPI(sms_api_key)

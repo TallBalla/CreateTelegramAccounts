@@ -11,7 +11,7 @@ from telethon import errors
 from telethon.tl.functions.channels import JoinChannelRequest
 
 
-# Info@payitnow.io acount api key
+# temp account api key
 sms_api_key = '769b7fA2cA8b5191d3c382cf46784db1'
 
 

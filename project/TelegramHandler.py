@@ -27,14 +27,11 @@ class TelegramHandler():
         first_name = names.get_first_name()
         last_name = names.get_last_name()
 
-        await self.client.sign_up(code=verification_code, 
+        await self.client.sign_up(
+                            code=verification_code, 
                             first_name=first_name,
                             last_name=last_name)
-        print(first_name)
-        print(last_name)
-
-    async def sign_up_client_with_username(self, verification_code):
-        return 'hello'
 
     async def add_client_to_pin_group(self):
         await self.client(JoinChannelRequest('PayItNow_PIN'))
+        self.client.disconnect()

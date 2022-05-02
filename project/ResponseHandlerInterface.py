@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 
-class ResponeHandlerInterface(ABC):
+class ResponseHandlerInterface(ABC):
     @abstractmethod
-    def get_balance() -> int:
+    def get_balance() -> float:
         pass
 
     @abstractmethod
@@ -11,4 +11,8 @@ class ResponeHandlerInterface(ABC):
 
     @abstractmethod
     def get_phone_number() -> str:
+        pass
+
+    @abstractmethod
+    def get_verification_code() -> int:
         pass

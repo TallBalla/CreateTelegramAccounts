@@ -1,12 +1,12 @@
 from TelegramHandler import TelegramHandler
 from ApiHandler import ApiHandler
 from ResponseHandler import ResponseHandler
-import project
 
 class ClientController():
-    telegram_handler = TelegramHandler()
-    api_handler = ApiHandler()
-    response_handler = ResponseHandler()
+    def __init__(self):
+        self.telegram_handler = TelegramHandler()
+        self.api_handler = ApiHandler()
+        self.response_handler = ResponseHandler()
 
     async def sign_up_client(self):
         phone_response_data = self.api_handler.request_phone_number(31)
@@ -33,3 +33,6 @@ class ClientController():
     def save_to_json_file():
         # TODO save to json file or database
         return 'hello'
+
+    def get_balance(self):
+        print(self.api_handler.request_balance())

@@ -7,13 +7,22 @@ from telethon import errors
 from telethon.tl.functions.channels import JoinChannelRequest
 
 class TelegramHandler():
-    id = '15075009'
-    hash = '1b3f35183a1865d05a169f8f60106151'
+    # id = 
+    # hash = '1b3f35183a1865d05a169f8f60106151'
 
-    client = TelegramClient('tester', id, hash)
+    # client = TelegramClient('tester', id, hash)
 
-    def __init__(self):
-        self.client.connect()
+    def __init__(self, 
+                 session_name = 'default',
+                 id='15075009',
+                 hash='1b3f35183a1865d05a169f8f60106151'):
+
+        self.client = TelegramClient(session_name, 
+                                     id, 
+                                     hash)
+
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(self.client.connect())
 
     async def request_sms_verification(self, phone_number):
         try:

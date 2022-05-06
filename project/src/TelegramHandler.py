@@ -32,10 +32,10 @@ class TelegramHandler():
             time.sleep(e.seconds)
             self.request_sms_verification(phone_number)
 
-    async def sign_up_client_with_full_name(self, verification_code):
-        first_name = names.get_first_name()
-        last_name = names.get_last_name()
-
+    async def sign_up_client_with_full_name(self, 
+                                            verification_code,
+                                            first_name,
+                                            last_name):
         await self.client.sign_up(
                             code=verification_code, 
                             first_name=first_name,
